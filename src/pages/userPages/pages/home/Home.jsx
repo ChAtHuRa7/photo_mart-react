@@ -1,10 +1,5 @@
 import React from 'react';
 import {Card,About} from './../../../../components/userComponent';
-import { useState , useEffect} from 'react';
-import { useDispatch } from 'react-redux';
-import { getuserByEmail } from '../../../../actions/users';
-import { useNavigate } from 'react-router-dom';
-
 import './home.css';
 
 const Home = () => {

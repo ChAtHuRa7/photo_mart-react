@@ -1,9 +1,15 @@
-import React,{useState} from 'react';
-import { RiMenu3Line, RiCloseLine} from 'react-icons/ri';
-import { Card,About,Calendar,Package,Portfolio,Profile} from './../../../components/userComponent';
+import React from 'react';
+import jwtDecode from 'jwt-decode';
+import { useLocation  ,useNavigate} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useState , useEffect} from 'react';
+import { getuserByEmail } from '../../../actions/users';
+import { getPhotographerByEmail } from '../../../actions/photographers';
+
+
+
+
 import './navbar.css';
-import { useNavigate } from "react-router-dom";
-import { redirect } from 'react-router-dom';
 
 const Menu = () => (
   <>
@@ -14,25 +20,58 @@ const Menu = () => (
 )
 
 const Navbar =() => {
+
+
+
 const [profile,setProfile] = useState(JSON.parse(localStorage.getItem('profile')))
 const [auth,setAuth] = useState(JSON.parse(localStorage.getItem('auth')))
 const [toggleMenu, setToggleMenu] = useState(false);
 const navigate = useNavigate ();
+const location = useLocation();
+const dispatch = useDispatch();
+
+
+useEffect(()=>{
+  if(auth && !profile){
+    if(auth?.authorities[0] === 'USER'){
+        dispatch(getuserByEmail(auth.email,navigate))
+    }
+    else if(auth?.authorities[0] === 'PHOTOGRAPHER'){
+        dispatch(getPhotographerByEmail(auth.email,navigate))
+    }
+  }
+},[]);
 
 
 const signup = () => {
   navigate("/signup");
 };
 
-const handelLogOut = (e) => {
-  e.preventDefault();
+const logout = ()=>{
   setAuth('')
   localStorage.removeItem('auth');
   localStorage.removeItem('profile');
-  // setAuth('');
-  navigate('home');
-  // return redirect('/');
-}
+  window.location.replace('/home');
+};
+
+const handelLogOut = (e) => {
+  e.preventDefault();
+  logout()
+};
+
+useEffect(()=>{
+  const token = auth?.jwt;
+  if(token){
+    const decodeToken = jwtDecode(token);
+    if((decodeToken.exp * 1000 ) + (330*60000) < new Date().getTime()){
+      // console.log("#")
+      logout();
+    }
+  }
+},[location])
+
+
+
 
 return (
 <div className='gpt3__navbar'>

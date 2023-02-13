@@ -18,7 +18,7 @@ const BookingScreen = () => {
 
   useEffect(()=>{
     dispatch(getBookingsByPid(profile.photographerId))
-  },[]);
+  },[dispatch]);
 
   return (
     <div className = 'booking-card-container'>

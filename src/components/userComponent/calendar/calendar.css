@@ -90,7 +90,8 @@
 }
 
 .highlight-pending{
-    color: rgb(67, 62, 62);
+    /* color: rgb(67, 62, 62); */
+    color: #222 !important;
     background-color: yellow !important;
 }
 

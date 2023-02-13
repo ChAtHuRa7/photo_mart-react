@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 import Dashboard from "./pages/photographerPages/home/Dashboard";
 import {Packages,Portfolios,PackagesForm , PortfolioForm , CalendarScreen , ContactsScreen , BookingScreen , ProfileScreen} from './components/photographerComponent';
 import { Home } from './pages/userPages/pages'

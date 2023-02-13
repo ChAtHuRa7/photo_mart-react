@@ -4,13 +4,14 @@ import './card.css';
 import  {Grid} from "@mui/material";
 import { useLocation ,useNavigate} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect , useState } from 'react';
 import { getPhotographersLimited , getPhotographers } from '../../../actions/photographers';
 
 
 const Card = ({count}) => {
 
   const {photographers} = useSelector((state)=> state.photographers);
+  const [auth,setAuth] = useState(JSON.parse(localStorage.getItem('auth')));
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const Card = ({count}) => {
 
         </Grid> 
 
-        {!location.pathname.includes('findmore') && photographers &&
+        {!location.pathname.includes('findmore') && photographers && auth &&
           <div className='btn_findMore'>
             <button type="button" onClick={handelFindmore} >Find More</button>
           </div> 

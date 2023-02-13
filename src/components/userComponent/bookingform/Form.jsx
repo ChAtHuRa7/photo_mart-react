@@ -18,17 +18,14 @@ import './form.css';
   const [packageData , setPackageData] = useState({packageTittle:'',packageDescription:'',price:'',packageStatus:''});
   const [eventData , setEventData] = useState({locating:'', time:''});
   const [customerData , setCustomerData] = useState({ fullName:'',email:'',phoneNo:'',address:'',message:''});
-  const [calendarId , setCalendarId] = useState();
   const {packages} = useSelector((state)=>state.packages);
   const {aCalendar} = useSelector((state)=>state.calendars);
-  const user = useSelector((state)=>state.user);
   const [profile,setProfile] = useState(JSON.parse(localStorage.getItem('profile')))
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const location = useLocation();
   const id = useParams()
-  const userId = 1;
 
   useEffect(()=>{
       dispatch(getPackagesByPhotId(id.id));
@@ -41,20 +38,19 @@ import './form.css';
   };
 
   const handelPackageData = (e) =>{
+    // console.log(packageData)
     setPackageData(packages.find((aPackage)=>aPackage.packageId == e))
   };
 
   const handelSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     if(bookingData && calendarData && packageData && eventData && customerData){
       dispatch(createCalendarEvent(calendarData));
     }
   }
 
-console.log(aCalendar);
 
 useEffect(()=>{
-  console.log(aCalendar);
   if(bookingData && aCalendar && packageData && eventData && customerData){
     dispatch(createBooking({...bookingData, calendarId:aCalendar.id, customerRequestDto:customerData,eventRequestDto:eventData,packageRequestDto:packageData},navigate));
   }
@@ -113,7 +109,7 @@ useEffect(()=>{
 
             <div className="info_text_box">
               <p>Wedding Location</p>
-              <input type="text" onChange={(e)=>setEventData({...eventData, locatin:e.target.value})}  value={eventData?.locatin} name="text" className="text_box" />
+              <input type="text" onChange={(e)=>setEventData({...eventData, locatin:e.target.value})}  value={eventData?.locating} name="text" className="text_box" />
             </div>
 
           </div>

@@ -1,22 +1,16 @@
 import React from "react";
-
-
-import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect, useMemo } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useDispatch} from 'react-redux';
+import { useState } from 'react';
+import { useNavigate} from 'react-router-dom';
 import { authenticatUser } from "../../actions/auth";
-import { getuserByEmail } from "../../actions/users";
 
 import './login.css'
 
-export default function(){
+export default function Login(){
     const [isPhotographer,setIsPhotographer] = useState(false);
     const [loginData,setLoginData] = useState({userEmail:'', password:''});
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const location = useLocation();
-    const [auth,setAuth] = useState(JSON.parse(localStorage.getItem('auth')))
-
 
     const handelOnClick = () =>{
         setIsPhotographer(!isPhotographer);
@@ -25,7 +19,6 @@ export default function(){
     const onSubmit=(e)=>{
         e.preventDefault();
         dispatch(authenticatUser(loginData,navigate));
-        setAuth(JSON.parse(localStorage.getItem('auth')));
     }
 
     return(

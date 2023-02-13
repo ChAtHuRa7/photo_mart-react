@@ -2,7 +2,7 @@ import React from 'react';
 
 import {NavBar,Sidebar} from '../../../components/photographerComponent';
 import { Outlet} from 'react-router-dom';
-import { useDispatch , useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getPhotographerById } from '../../../actions/photographers';
 

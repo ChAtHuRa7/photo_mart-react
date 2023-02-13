@@ -1,6 +1,6 @@
 import axio from 'axios';
 
-const API = axio.create({baseURL:"http://localhost:8080/portfolio-service/api/v1/portfolios/"});
+const API = axio.create({baseURL:"http://52.69.244.112:8080/portfolio-service/api/v1/portfolios/"});
 
 
 API.interceptors.request.use((req) => {

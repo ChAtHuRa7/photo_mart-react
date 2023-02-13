@@ -1,6 +1,6 @@
 import axio from 'axios';
 
-const API = axio.create({baseURL:"http://localhost:8080/booking-service/api/v1/bookings/"});
+const API = axio.create({baseURL:"http://52.69.244.112:8080/booking-service/api/v1/bookings/"});
 
 
 API.interceptors.request.use((req) => {
@@ -13,4 +13,5 @@ API.interceptors.request.use((req) => {
 
 export const createBooking = (newBooking) => API.post('',newBooking);
 export const getBookingsByPid = (photId) => API.get(`?pId=${photId}`);
+export const updateBookingStatus = (id,status) => API.put(`?id=${id}&bStatus=${status}`)
 

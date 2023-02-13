@@ -1,6 +1,6 @@
 import axio from 'axios';
 
-const API = axio.create({baseURL:"http://localhost:8080/package-service/api/v1/packages/"});
+const API = axio.create({baseURL:"http://52.69.244.112:8080/package-service/api/v1/packages/"});
 
 API.interceptors.request.use((req) => {
     if(localStorage.getItem('auth')){
