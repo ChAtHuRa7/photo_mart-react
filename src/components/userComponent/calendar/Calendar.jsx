@@ -2,7 +2,6 @@ import React from 'react'
 import Calender from 'react-calendar';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment/moment';
 
 import { getCalendarEventByPhtoId } from '../../../actions/calendar';
 
@@ -13,8 +12,6 @@ import './calendar.css';
 const Calendar =({id,handelCalendarData}) => {
   const {calendars} = useSelector((state)=> state.calendars)
   const dispatch = useDispatch();
-
-  const [calendarData , setCalendarData] = useState({photographerId:'', userId:'', dateTime:'', status:''});
   const [value , onChange] = useState(new Date());
 
   useEffect(()=>{
@@ -22,7 +19,7 @@ const Calendar =({id,handelCalendarData}) => {
   },[id]);
 
   const highlightBooking = ({date})=>{
-    let aCalendar = calendars?.find(aCalendar=> aCalendar.date === moment(date).format("DD/MM/YYYY"));
+    let aCalendar = calendars?.find(aCalendar=> new Date(aCalendar.dateTime).getTime() === date.getTime());
     // console.log(date);
     if(aCalendar){
       if(aCalendar.status === "pending"){

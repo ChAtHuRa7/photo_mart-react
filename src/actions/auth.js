@@ -1,6 +1,6 @@
 import * as api from '../apis/authApi';
 
-import { CREATE } from '../constants/actionTyps';
+import { CREATE , ERROR} from '../constants/actionTyps';
 
 
 export const authenticatUser = (userDet,navigate) => async (dispatch) => {
@@ -9,6 +9,7 @@ export const authenticatUser = (userDet,navigate) => async (dispatch) => {
         dispatch({type:CREATE, payload:{data:userDet.userEmail ,token: data}});
         navigate(`/home`);
     }catch(error){
+        dispatch({type:ERROR, payload:{data:error}});
         console.log(error);
     }
 };
@@ -19,6 +20,7 @@ export const createNewUser = (newUser,navigate) => async (dispatch) => {
         dispatch({type:CREATE, payload:{data:newUser.userEmail,token: data}});
         navigate(`/home`);
     }catch(error){
+        dispatch({type:ERROR, payload:{data:error}});
         console.log(error);
     }
 };

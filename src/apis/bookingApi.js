@@ -13,5 +13,6 @@ API.interceptors.request.use((req) => {
 
 export const createBooking = (newBooking) => API.post('',newBooking);
 export const getBookingsByPid = (photId) => API.get(`?pId=${photId}`);
+export const getBookingsByUid = (uId) => API.get(`?uId=${uId}`);
 export const updateBookingStatus = (id,status) => API.put(`?id=${id}&bStatus=${status}`)
 

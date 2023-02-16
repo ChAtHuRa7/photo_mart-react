@@ -7,6 +7,7 @@ export const getPackagesByPhotId = (photId) => async (dispatch) => {
         const {data} = await api.fetchPackageByPhotographerId(photId);
         dispatch({type:FETCH_PACKAGE_BY_PHTGPHR_ID, payload:{packages : data}});
     }catch(error){
+        dispatch({type:FETCH_PACKAGE_BY_PHTGPHR_ID, payload:{packages : []}});
         console.log(error);
     }
 }

@@ -6,6 +6,7 @@
 
 .signup-container{
   display: flex;
+  flex-direction: column;
   background-color: azure;
   background-size:cover;
   height: 100vh;
@@ -14,6 +15,23 @@
   scroll-behavior: smooth;
   justify-content: center;
   align-items: center;
+}
+
+.cancelBtn{
+  display: flex;
+  width: 80%;
+  justify-content: flex-end;
+}
+
+.cancelBtn button{
+    
+  color: rgba(0, 0, 0, 0.5);
+  background: none;
+  border: none;
+  font-size: 30px;
+  font-weight: lighter;
+  cursor: pointer;
+  
 }
 
 .signup-form-container{
@@ -27,6 +45,25 @@
   width: 60%;
   border-radius: 10px;
 }
+
+.signup-form-container p{
+  color: red;
+  font-size: 13px;
+  padding: 0;
+  margin: 0;
+}
+
+/* .input-container p{
+  color: red;
+  font-size: 13px;
+  padding-top: 5px;
+}
+
+.login-form-1 form p{
+  color: red;
+  font-size: 13px;
+  padding-bottom: 5px;
+} */
 
 .signup-form-titel{
   display: flex;
@@ -94,7 +131,7 @@
 }
 
 .input-container{
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 }
 
 .input-container input{
@@ -137,4 +174,15 @@
   flex-direction: column;
   justify-content: center;
   margin-left: 10%;
+}
+
+.signup-error p{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.input-container a{
+  display: flex;
+  justify-content: center;
 }

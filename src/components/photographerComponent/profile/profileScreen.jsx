@@ -3,7 +3,6 @@ import './profile.css'
 
 import { storage } from '../../../Firebase/firebaseConfig';
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-import { useNavigate , useLocation , useParams} from "react-router-dom";
 import { useEffect, useState} from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { AddAPhoto } from '@mui/icons-material';
@@ -15,9 +14,7 @@ export default function ProfileScreen() {
     const [ photographerData, setPhotographerData] = useState({photographerMobileNo:'', address:'', studioName:'', studioEmail:'', description:'', profilePicLink:'',whatsAppNumber:'',contactEmail:'',faceBookProfile:''});
     const [profile,setProfile] = useState(JSON.parse(localStorage.getItem('profile')))
     const {photographer} = useSelector((state)=> state.photographers);
-    const navigate = useNavigate();
     const dispatch = useDispatch();
-    const location = useLocation();;
 
     useEffect(()=>{
         if(profile){

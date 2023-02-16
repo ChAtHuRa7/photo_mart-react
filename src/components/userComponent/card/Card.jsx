@@ -17,8 +17,13 @@ const Card = ({count}) => {
   const dispatch = useDispatch();
 
   const handelFindmore = () => {
-    navigate("/findmore");
-  }  ;
+    if(auth){
+      navigate("/findmore");
+    }
+    else{
+      navigate('/login')
+    }
+  };
 
   useEffect(()=>{
     if(location.pathname.includes('home')){
@@ -27,7 +32,7 @@ const Card = ({count}) => {
     else{
       dispatch(getPhotographers());
     }
-  },[location,dispatch]);
+  },[dispatch]);
 
   return(
     <div className="now_showing-container">
@@ -39,7 +44,7 @@ const Card = ({count}) => {
 
         </Grid> 
 
-        {!location.pathname.includes('findmore') && photographers && auth &&
+        {!location.pathname.includes('findmore') &&
           <div className='btn_findMore'>
             <button type="button" onClick={handelFindmore} >Find More</button>
           </div> 

@@ -139,3 +139,7 @@
   border:1px solid #23cdaf;
   transition: all ease 0.2s;
 }
+
+.MuiCircularProgress-root{
+  justify-content: center;
+}

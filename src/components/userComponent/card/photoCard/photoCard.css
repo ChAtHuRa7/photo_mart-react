@@ -31,6 +31,7 @@
 .showing_movie_card-container img{
     display: flex;
     justify-content: center;
+    align-items: center;
     height: 150px;
     width: 140px;
     border-radius: 30%;
@@ -48,12 +49,14 @@
     flex-direction: column;
     justify-content: center;
     margin: 15px 0;
-    font-size: 24px;
+    /* font-size: 24px; */
 }
 
 .showing_movie_card-titel p{
+    display: flex;
     font-size: 22px;
     font-family: Rockwell, "Courier New", Courier, Georgia,Times, "Times New Roman", serif;
+    justify-content: center;
     font-weight: bold;
     color: rgba(35,30,35,1);
 }

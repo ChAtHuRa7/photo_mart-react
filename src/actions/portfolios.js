@@ -17,6 +17,7 @@ export const getPortfoliosByPhotId = (photId) => async (dispatch) => {
         const {data} = await api.getPortfolioByPhotId(photId);
         dispatch({type:FETCH_PORTFOLIO_BY_PHTGPHR_ID, payload:{portfolios: data}});
     }catch(error){
+        dispatch({type:FETCH_PORTFOLIO_BY_PHTGPHR_ID, payload:{portfolios: []}});
         console.log(error);
     }
 };

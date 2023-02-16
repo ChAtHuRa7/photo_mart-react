@@ -1,25 +1,19 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect, useMemo } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { getPackagesByPhotId } from '../../../actions/packages';
 
 import './packageCard.css';
 
 const PackageCard = ({id,handelPackageData}) => {
-    const [packageData , setPackageData] = useState({packageTittle:'',packageDescription:'',price:'',packageStatus:''});
-
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const location = useLocation();
 
     const {packages} = useSelector((state)=>state.packages);
 
     useEffect(()=>{
         dispatch(getPackagesByPhotId(id));
-    },[location]);
+    },[dispatch]);
 
     const handelChange = (pack)=>{
         handelPackageData(pack)
@@ -29,9 +23,9 @@ const PackageCard = ({id,handelPackageData}) => {
   return (    
     <div > 
         <div className="packages_card_container">
-          <Grid container direction={'row'} justifyContent={'space-evenly'}>
+          <Grid container  justifyContent={'space-evenly'}>
             {packages?.map(pack=> 
-              <Grid key={pack.id} item xm={4}>
+              <Grid key={pack.id} item xs={12} sm={4} >
                 <div className="package_card">
                     <p>{pack.packageTittle}</p>
                   <input type="radio" onChange={handelChange(pack)} value={pack.packageId} name="type" className="package_radio" />

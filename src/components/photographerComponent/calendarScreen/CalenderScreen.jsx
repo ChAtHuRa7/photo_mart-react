@@ -8,7 +8,6 @@ import 'react-calendar/dist/Calendar.css';
 import { useEffect } from 'react';
 import { createCalendarEvent, getCalendarEventByPhtoId } from '../../../actions/calendar';
 
-const moment = require('moment');
 
 
 export const CalenderScreen = () => {
@@ -32,8 +31,7 @@ export const CalenderScreen = () => {
   }
 
   const highlightBooking = ({date})=>{
-    let aCalendar = calendars?.find(aCalendar=> aCalendar.date === moment(date).format("DD/MM/YYYY"));
-    // console.log(date);
+    let aCalendar = calendars?.find(aCalendar=> new Date(aCalendar.dateTime).getTime() === date.getTime());
     if(aCalendar){
       if(aCalendar.status === "pending"){
         return 'highlight-pending'
@@ -52,7 +50,11 @@ export const CalenderScreen = () => {
   return (
     <div className='calendar-group'>
       <div className='calendarContainer'>
-        <Calendar onChange={(e)=>onChange(e)} value={value}
+        <Calendar onChange={(e)=>{onChange(e) 
+        
+        console.log(e)
+      
+      }} value={value}
           tileClassName = {({date,view})=>highlightBooking({date})}
           tileDisabled = {({date})=> highlightBooking({date})}
         />

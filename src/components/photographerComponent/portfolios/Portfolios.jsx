@@ -23,7 +23,7 @@ export default function Portfolios({photId}) {
     else{
       dispatch(getPortfoliosByPhotId(photId));
     }
-  },[location]);
+  },[dispatch]);
 
   return (
     <div className='portfolios'>

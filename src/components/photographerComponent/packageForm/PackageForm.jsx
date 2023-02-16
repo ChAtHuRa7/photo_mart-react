@@ -1,6 +1,6 @@
 import './packageForm.css'
-import { useNavigate , useLocation , useParams} from "react-router-dom";
-import { useEffect, useState} from 'react';
+import { useNavigate} from "react-router-dom";
+import { useState} from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { createPackage } from '../../../actions/packages';
 
@@ -11,13 +11,12 @@ export default function PackageForm() {
     const {packages} = useSelector((state)=> state.packages);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const location = useLocation();
     
 
     const handelSubmit = async (e) =>{
         e.preventDefault();
         if(packages.length < 3){
-            dispatch(createPackage({...packageData, photographerId: profile.photogarpherId},navigate));
+            dispatch(createPackage({...packageData, photographerId: profile.photographerId},navigate));
         }
         else{
             navigate('/photographer/package');
